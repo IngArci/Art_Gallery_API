@@ -1,5 +1,6 @@
 package com.mycompany.GaleriaArte.service;
 
+import com.mycompany.GaleriaArte.model.Escultura;
 import com.mycompany.GaleriaArte.model.Pintura;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +23,15 @@ public interface IObraArteService {
     List<Pintura> buscarPinturas(String autor, String estado, Double minPrecio,
                                  String tecnica, String textura,
                                  LocalDateTime fechaIngreso);
+
+
+    Escultura crearEscultura(Escultura e);
+    Escultura obtenerEscultura(int id);
+    Escultura actualizarEscultura(int id, Escultura cambios);
+    void eliminarEscultura(int id); // soft-delete
+    List<Escultura> listarEsculturas();          // solo activas
+    List<Escultura> listarTodasEsculturas();     // activas + inactivas
+    List<Escultura> buscarEsculturas(String material, String tipoEscultura,
+                                     String estado, Double minPrecio,
+                                     LocalDateTime fechaIngreso);
 }
