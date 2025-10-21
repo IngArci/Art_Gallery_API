@@ -139,6 +139,7 @@
             this.txtIdEscultura.Name = "txtIdEscultura";
             this.txtIdEscultura.Size = new System.Drawing.Size(100, 27);
             this.txtIdEscultura.TabIndex = 49;
+            this.txtIdEscultura.TextChanged += new System.EventHandler(this.txtIdEscultura_TextChanged);
             // 
             // labelId
             // 
@@ -263,6 +264,7 @@
             this.Name = "FormEliminar_Escultura";
             this.Text = "FormEliminar_Escultura";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.FormEliminar_Escultura_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

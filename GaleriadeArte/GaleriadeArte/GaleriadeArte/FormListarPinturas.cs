@@ -65,6 +65,8 @@ namespace GaleriadeArte
         }
 
 
+
+
         private void btnListar_MouseEnter(object sender, EventArgs e)
         {
             this.BackgroundImage = Image.FromFile(@"Imagenes\Listar.png");

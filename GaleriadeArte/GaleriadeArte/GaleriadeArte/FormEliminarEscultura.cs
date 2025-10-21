@@ -94,5 +94,15 @@ namespace GaleriadeArte
             // this.BackgroundImage = Image.FromFile(@"Imagenes\fondo_normal.jpg");
             this.BackgroundImageLayout = ImageLayout.Zoom;
         }
+
+        private void txtIdEscultura_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormEliminar_Escultura_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
