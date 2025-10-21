@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListarPinturas));
             this.btnListar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,6 +59,26 @@
             this.dataGridView1.Size = new System.Drawing.Size(348, 341);
             this.dataGridView1.TabIndex = 50;
             // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnFiltrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnFiltrar.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiltrar.Location = new System.Drawing.Point(780, 190);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(131, 37);
+            this.btnFiltrar.TabIndex = 59;
+            this.btnFiltrar.Text = "Filtrar";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // txtFiltro
+            // 
+            this.txtFiltro.Location = new System.Drawing.Point(765, 246);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(160, 27);
+            this.txtFiltro.TabIndex = 58;
+            // 
             // FormListarPinturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 20F);
@@ -65,6 +87,8 @@
             this.BackgroundImage = global::GaleriadeArte.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1200, 562);
+            this.Controls.Add(this.btnFiltrar);
+            this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnListar);
             this.DoubleBuffered = true;
@@ -76,6 +100,7 @@
             this.Text = "FormListarPinturas";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -83,5 +108,7 @@
 
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.TextBox txtFiltro;
     }
 }

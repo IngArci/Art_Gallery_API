@@ -30,6 +30,7 @@ namespace GaleriadeArte
             try
             {
                 var pinturas = await api.GetPinturasAsync(); // usa el método correcto
+                listaCompleta = pinturas;
 
                 if (pinturas == null || pinturas.Count == 0)
                 {
@@ -64,7 +65,33 @@ namespace GaleriadeArte
             }
         }
 
+        private List<Pintura> listaCompleta = new List<Pintura>();
 
+        // 🔹 Método auxiliar para aplicar filtro
+        private void FiltrarPinturas(string texto)
+        {
+            if (listaCompleta == null || listaCompleta.Count == 0)
+                return;
+
+            string filtro = texto.ToLower();
+
+            // LINQ para buscar coincidencias
+            var filtradas = listaCompleta.Where(e =>
+                (!string.IsNullOrEmpty(e.Titulo) && e.Titulo.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Autor) && e.Autor.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Tipo) && e.Tipo.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Estado) && e.Estado.ToLower().Contains(filtro))
+            ).ToList();
+
+            // Actualizar el DataGridView
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = filtradas;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            FiltrarPinturas(txtFiltro.Text.Trim());
+        }
 
 
         private void btnListar_MouseEnter(object sender, EventArgs e)
