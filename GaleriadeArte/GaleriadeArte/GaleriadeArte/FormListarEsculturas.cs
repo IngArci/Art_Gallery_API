@@ -27,6 +27,8 @@ namespace GaleriadeArte
             try
             {
                 var esculturas = await api.GetEsculturasAsync(); // Usa tu método en ApiService
+                listaCompleta = esculturas; // 🔹 Guardamos la lista para filtrar luego
+
 
                 if (esculturas == null || esculturas.Count == 0)
                 {
@@ -61,6 +63,36 @@ namespace GaleriadeArte
             {
                 MessageBox.Show("❌ Error al listar esculturas: " + ex.Message);
             }
+        }
+
+        // 🔹 Guardar la lista completa para poder filtrar sin volver a llamar la API
+        private List<Escultura> listaCompleta = new List<Escultura>();
+
+        // 🔹 Método auxiliar para aplicar filtro
+        private void FiltrarEsculturas(string texto)
+        {
+            if (listaCompleta == null || listaCompleta.Count == 0)
+                return;
+
+            string filtro = texto.ToLower();
+
+            // LINQ para buscar coincidencias
+            var filtradas = listaCompleta.Where(e =>
+                (!string.IsNullOrEmpty(e.Titulo) && e.Titulo.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Autor) && e.Autor.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Material) && e.Material.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Tipo) && e.Tipo.ToLower().Contains(filtro)) ||
+                (!string.IsNullOrEmpty(e.Estado) && e.Estado.ToLower().Contains(filtro))
+            ).ToList();
+
+            // Actualizar el DataGridView
+            dataGridViewEsculturas.DataSource = null;
+            dataGridViewEsculturas.DataSource = filtradas;
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            FiltrarEsculturas(txtFiltro.Text.Trim());
         }
 
         private void btnListar_MouseEnter(object sender, EventArgs e)
