@@ -5,136 +5,180 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GaleriadeArte   // IMPORTANTE: mismo namespace que tus formularios
+namespace GaleriadeArte
 {
     public class ApiService
     {
-        private readonly RestClient client;
+        private readonly RestClient clientPinturas;
+        private readonly RestClient clientEsculturas;
 
         public ApiService()
         {
-            // Configuración con autenticación básica
-            var options = new RestClientOptions("http://localhost:8090/pinturas")
+            // Cliente para PINTURAS
+            clientPinturas = new RestClient(new RestClientOptions("http://localhost:8090/pinturas")
             {
-                Authenticator = new HttpBasicAuthenticator("admin", "admin") // usuario y contraseña del backend
-            };
+                Authenticator = new HttpBasicAuthenticator("admin", "admin")
+            });
 
-            client = new RestClient(options);
+            // Cliente para ESCULTURAS
+            clientEsculturas = new RestClient(new RestClientOptions("http://localhost:8090/esculturas")
+            {
+                Authenticator = new HttpBasicAuthenticator("admin", "admin")
+            });
         }
 
-        // HealthCheck
-        public async Task<string> HealthCheckAsync()
+        /* ========================= PINTURAS ========================= */
+
+        public async Task<string> HealthCheckPinturasAsync()
         {
-            var request = new RestRequest("healthCheck", Method.Get);
-            var response = await client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful)
-                throw new Exception("Error de conexión: " + response.ErrorMessage);
-
+            var response = await clientPinturas.ExecuteAsync(new RestRequest("healthCheck", Method.Get));
+            if (!response.IsSuccessful) throw new Exception("Error de conexión: " + response.ErrorMessage);
             return response.Content;
         }
 
-        // Listar solo activas
         public async Task<List<Pintura>> GetPinturasAsync()
         {
-            var request = new RestRequest("", Method.Get);
-            var response = await client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
-                throw new Exception("Error al listar pinturas: " + response.ErrorMessage);
-
+            var response = await clientPinturas.ExecuteAsync(new RestRequest("", Method.Get));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al listar pinturas: " + response.ErrorMessage);
             return JsonConvert.DeserializeObject<List<Pintura>>(response.Content);
         }
 
-        // Listar todas (incluye inactivas)
         public async Task<List<Pintura>> GetTodasPinturasAsync()
         {
-            var request = new RestRequest("all", Method.Get);
-            var response = await client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
-                throw new Exception("Error al listar todas las pinturas: " + response.ErrorMessage);
-
+            var response = await clientPinturas.ExecuteAsync(new RestRequest("all", Method.Get));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al listar todas las pinturas: " + response.ErrorMessage);
             return JsonConvert.DeserializeObject<List<Pintura>>(response.Content);
         }
 
-        // Obtener por ID
         public async Task<Pintura> GetPinturaAsync(int id)
         {
-            var request = new RestRequest("/{id}", Method.Get);
-            request.AddUrlSegment("id", id);
-            var response = await client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
-                throw new Exception("No se pudo obtener la pintura: " + response.ErrorMessage);
-
+            var request = new RestRequest("/{id}", Method.Get).AddUrlSegment("id", id);
+            var response = await clientPinturas.ExecuteAsync(request);
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("No se pudo obtener la pintura: " + response.ErrorMessage);
             return JsonConvert.DeserializeObject<Pintura>(response.Content);
         }
 
-        // Crear pintura
         public async Task<Pintura> CrearPinturaAsync(Pintura p)
         {
-            var request = new RestRequest("", Method.Post);
-            request.AddJsonBody(p);
-            var response = await client.ExecuteAsync(request);
-
-            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
-                throw new Exception("Error al crear pintura: " + response.ErrorMessage);
-
+            var response = await clientPinturas.ExecuteAsync(new RestRequest("", Method.Post).AddJsonBody(p));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al crear pintura: " + response.ErrorMessage);
             return JsonConvert.DeserializeObject<Pintura>(response.Content);
         }
 
-        // Actualizar pintura
         public async Task<Pintura> ActualizarPinturaAsync(int id, Pintura cambios)
         {
-            var request = new RestRequest("/{id}", Method.Put);
-            request.AddUrlSegment("id", id);
-            request.AddJsonBody(cambios);
-            var response = await client.ExecuteAsync(request);
+            var response = await clientPinturas.ExecuteAsync(new RestRequest("/{id}", Method.Put).AddUrlSegment("id", id).AddJsonBody(cambios));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al actualizar pintura: " + response.ErrorMessage);
+            return JsonConvert.DeserializeObject<Pintura>(response.Content);
+        }
+
+        public async Task<bool> EliminarPinturaAsync(int id)
+        {
+            var response = await clientPinturas.ExecuteAsync(new RestRequest("/{id}", Method.Delete).AddUrlSegment("id", id));
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<Pintura> BuscarPinturaPorIdAsync(int id)
+        {
+            var request = new RestRequest("/{id}", Method.Get).AddUrlSegment("id", id);
+            var response = await clientPinturas.ExecuteAsync(request);
 
             if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
-                throw new Exception("Error al actualizar pintura: " + response.ErrorMessage);
+                throw new Exception("No se pudo encontrar la pintura con ID " + id + ": " + response.ErrorMessage);
 
             return JsonConvert.DeserializeObject<Pintura>(response.Content);
         }
 
-        // Eliminar pintura (soft delete)
-        public async Task<bool> EliminarPinturaAsync(int id)
-        {
-            var request = new RestRequest("/{id}", Method.Delete);
-            request.AddUrlSegment("id", id);
-            var response = await client.ExecuteAsync(request);
+        //public async Task<List<Pintura>> BuscarPinturasAsync(string autor = null, string estado = null, double? minPrecio = null, string tecnica = null, string textura = null)
+        //{
+          //  var request = new RestRequest("search", Method.Get);
+            //if (!string.IsNullOrEmpty(autor)) request.AddQueryParameter("autor", autor);
+            //if (!string.IsNullOrEmpty(estado)) request.AddQueryParameter("estado", estado);
+            //if (minPrecio.HasValue) request.AddQueryParameter("minPrecio", minPrecio.ToString());
+            //if (!string.IsNullOrEmpty(tecnica)) request.AddQueryParameter("tecnica", tecnica);
+            //if (!string.IsNullOrEmpty(textura)) request.AddQueryParameter("textura", textura);
 
-            return response.IsSuccessful;
+            //var response = await clientPinturas.ExecuteAsync(request);
+            //if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error en la búsqueda: " + response.ErrorMessage);
+            //return JsonConvert.DeserializeObject<List<Pintura>>(response.Content);
+        //}
+
+        /* ========================= ESCULTURAS ========================= */
+
+        public async Task<string> HealthCheckEsculturasAsync()
+        {
+            var response = await clientEsculturas.ExecuteAsync(new RestRequest("healthCheck", Method.Get));
+            if (!response.IsSuccessful) throw new Exception("Error de conexión: " + response.ErrorMessage);
+            return response.Content;
         }
 
-        // Buscar pinturas con filtros
-        public async Task<List<Pintura>> BuscarPinturasAsync(
-            string autor = null,
-            string estado = null,
-            double? minPrecio = null,
-            string tecnica = null,
-            string textura = null)
+        public async Task<List<Escultura>> GetEsculturasAsync()
         {
-            var request = new RestRequest("search", Method.Get);
+            var response = await clientEsculturas.ExecuteAsync(new RestRequest("", Method.Get));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al listar esculturas: " + response.ErrorMessage);
+            return JsonConvert.DeserializeObject<List<Escultura>>(response.Content);
+        }
 
-            if (!string.IsNullOrEmpty(autor))
-                request.AddQueryParameter("autor", autor);
-            if (!string.IsNullOrEmpty(estado))
-                request.AddQueryParameter("estado", estado);
-            if (minPrecio.HasValue)
-                request.AddQueryParameter("minPrecio", minPrecio.ToString());
-            if (!string.IsNullOrEmpty(tecnica))
-                request.AddQueryParameter("tecnica", tecnica);
-            if (!string.IsNullOrEmpty(textura))
-                request.AddQueryParameter("textura", textura);
+        public async Task<List<Escultura>> GetTodasEsculturasAsync()
+        {
+            var response = await clientEsculturas.ExecuteAsync(new RestRequest("all", Method.Get));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al listar todas las esculturas: " + response.ErrorMessage);
+            return JsonConvert.DeserializeObject<List<Escultura>>(response.Content);
+        }
 
-            var response = await client.ExecuteAsync(request);
+        public async Task<Escultura> GetEsculturaAsync(int id)
+        {
+            var request = new RestRequest("/{id}", Method.Get).AddUrlSegment("id", id);
+            var response = await clientEsculturas.ExecuteAsync(request);
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("No se pudo obtener la escultura: " + response.ErrorMessage);
+            return JsonConvert.DeserializeObject<Escultura>(response.Content);
+        }
+
+        public async Task<Escultura> CrearEsculturaAsync(Escultura e)
+        {
+            var response = await clientEsculturas.ExecuteAsync(new RestRequest("", Method.Post).AddJsonBody(e));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al crear escultura: " + response.ErrorMessage);
+            return JsonConvert.DeserializeObject<Escultura>(response.Content);
+        }
+
+        public async Task<Escultura> ActualizarEsculturaAsync(int id, Escultura cambios)
+        {
+            var response = await clientEsculturas.ExecuteAsync(new RestRequest("/{id}", Method.Put).AddUrlSegment("id", id).AddJsonBody(cambios));
+            if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error al actualizar escultura: " + response.ErrorMessage);
+            return JsonConvert.DeserializeObject<Escultura>(response.Content);
+        }
+
+        public async Task<bool> EliminarEsculturaAsync(int id)
+        {
+            var response = await clientEsculturas.ExecuteAsync(new RestRequest("/{id}", Method.Delete).AddUrlSegment("id", id));
+            return response.IsSuccessStatusCode;
+        }
+
+
+        public async Task<Escultura> BuscarEsculturaPorIdAsync(int id)
+        {
+            var request = new RestRequest("/{id}", Method.Get).AddUrlSegment("id", id);
+            var response = await clientEsculturas.ExecuteAsync(request);
 
             if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content))
-                throw new Exception("Error en la búsqueda: " + response.ErrorMessage);
+                throw new Exception("No se pudo encontrar la escultura con ID " + id + ": " + response.ErrorMessage);
 
-            return JsonConvert.DeserializeObject<List<Pintura>>(response.Content);
+            return JsonConvert.DeserializeObject<Escultura>(response.Content);
         }
+
+
+        //**public async Task<List<Escultura>> BuscarEsculturasAsync(string material = null, string tipoEscultura = null, string estado = null, double? minPrecio = null, DateTime? fechaIngreso = null)
+        //{
+        //  var request = new RestRequest("search", Method.Get);
+        //if (!string.IsNullOrEmpty(material)) request.AddQueryParameter("material", material);
+        //if (!string.IsNullOrEmpty(tipoEscultura)) request.AddQueryParameter("tipoEscultura", tipoEscultura);
+        //if (!string.IsNullOrEmpty(estado)) request.AddQueryParameter("estado", estado);
+        //if (minPrecio.HasValue) request.AddQueryParameter("minPrecio", minPrecio.ToString());
+        //if (fechaIngreso.HasValue) request.AddQueryParameter("fechaIngreso", fechaIngreso.Value.ToString("yyyy-MM-ddTHH:mm:ss"));
+
+        //var response = await clientEsculturas.ExecuteAsync(request);
+        //if (!response.IsSuccessful || string.IsNullOrEmpty(response.Content)) throw new Exception("Error en la búsqueda: " + response.ErrorMessage);
+        //return JsonConvert.DeserializeObject<List<Escultura>>(response.Content);
+        //} **//
     }
 }

@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="ApiService.cs" />
     <Compile Include="Pintura.cs" />
+	<Compile Include="Escultura.cs" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

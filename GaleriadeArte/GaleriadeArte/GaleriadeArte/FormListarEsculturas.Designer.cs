@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormListarEsculturas));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewEsculturas = new System.Windows.Forms.DataGridView();
             this.btnListar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEsculturas)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewEsculturas
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 71);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(348, 341);
-            this.dataGridView1.TabIndex = 51;
+            this.dataGridViewEsculturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEsculturas.Location = new System.Drawing.Point(23, 71);
+            this.dataGridViewEsculturas.Name = "dataGridViewEsculturas";
+            this.dataGridViewEsculturas.RowHeadersWidth = 51;
+            this.dataGridViewEsculturas.RowTemplate.Height = 24;
+            this.dataGridViewEsculturas.Size = new System.Drawing.Size(348, 341);
+            this.dataGridViewEsculturas.TabIndex = 51;
             // 
             // btnListar
             // 
@@ -66,7 +66,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1200, 562);
             this.Controls.Add(this.btnListar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewEsculturas);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("MS UI Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -74,14 +74,14 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormListarEsculturas";
             this.Text = "FormListarEsculturas";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEsculturas)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewEsculturas;
         private System.Windows.Forms.Button btnListar;
     }
 }

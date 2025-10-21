@@ -12,18 +12,44 @@ namespace GaleriadeArte
 {
     public partial class FormAñadirEscultura : Form
     {
+        private readonly ApiService api;
+
         public FormAñadirEscultura()
         {
             InitializeComponent();
-            comboBox1.Items.Add("Activo");
-            comboBox1.Items.Add("Inactivo");
+            comboEstado.Items.Add("Activo");
+            comboEstado.Items.Add("Inactivo");
             btnAñadir.MouseEnter += btnAñadir_MouseEnter;
             btnAñadir.MouseLeave += btnAñadir_MouseLeave;
+            api = new ApiService();
         }
 
-        private void btnAñadir_Click(object sender, EventArgs e)
+        private async void btnAñadir_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Escultura nueva = new Escultura
+                {
+                    Id = int.Parse(txtId.Text),
+                    Titulo = txtTitulo.Text,
+                    Autor = txtAutor.Text,
+                    Precio = double.Parse(txtPrecio.Text),
+                    Estado = comboEstado.SelectedItem?.ToString() ?? "Activo",
+                    FechaIngreso = DateTime.Parse(dateFecha.Value.ToString("yyyy-MM-ddTHH:mm:ss")),
+                    Tipo = txtTipo.Text,
+                    Altura = double.Parse(txtVolumen.Text),
+                    Volumen = double.Parse(txtVolumen.Text),
+                    Material = txtMaterial.Text
+                };
 
+                Escultura creada = await api.CrearEsculturaAsync(nueva);
+
+                MessageBox.Show($"✅ Escultura añadida con éxito:\nID: {creada.Id}\nTítulo: {creada.Titulo}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("❌ Error al añadir escultura: " + ex.Message);
+            }
         }
 
         private void btnAñadir_MouseEnter(object sender, EventArgs e)

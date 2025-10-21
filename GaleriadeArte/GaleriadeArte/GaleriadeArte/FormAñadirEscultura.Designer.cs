@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAñadirEscultura));
-            this.txtTextura = new System.Windows.Forms.TextBox();
-            this.labelTextura = new System.Windows.Forms.Label();
-            this.textTecnica = new System.Windows.Forms.TextBox();
-            this.labelTecnica = new System.Windows.Forms.Label();
-            this.FechaIngreso = new System.Windows.Forms.DateTimePicker();
+            this.txtVolumen = new System.Windows.Forms.TextBox();
+            this.labelAltura = new System.Windows.Forms.Label();
+            this.txtTipo = new System.Windows.Forms.TextBox();
+            this.labelTipo = new System.Windows.Forms.Label();
+            this.dateFecha = new System.Windows.Forms.DateTimePicker();
             this.labelFechaIngreso = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboEstado = new System.Windows.Forms.ComboBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.labelPrecio = new System.Windows.Forms.Label();
@@ -43,51 +43,55 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTitulo = new System.Windows.Forms.TextBox();
             this.labelTitulo = new System.Windows.Forms.Label();
-            this.txtIdEscultura = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
             this.btnAñadir = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMaterial = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtTextura
+            // txtVolumen
             // 
-            this.txtTextura.Location = new System.Drawing.Point(105, 430);
-            this.txtTextura.Name = "txtTextura";
-            this.txtTextura.Size = new System.Drawing.Size(173, 27);
-            this.txtTextura.TabIndex = 31;
-            this.txtTextura.TextChanged += new System.EventHandler(this.txtTextura_TextChanged);
+            this.txtVolumen.Location = new System.Drawing.Point(105, 430);
+            this.txtVolumen.Name = "txtVolumen";
+            this.txtVolumen.Size = new System.Drawing.Size(173, 27);
+            this.txtVolumen.TabIndex = 31;
+            this.txtVolumen.TextChanged += new System.EventHandler(this.txtTextura_TextChanged);
             // 
-            // labelTextura
+            // labelAltura
             // 
-            this.labelTextura.AutoSize = true;
-            this.labelTextura.Location = new System.Drawing.Point(24, 437);
-            this.labelTextura.Name = "labelTextura";
-            this.labelTextura.Size = new System.Drawing.Size(81, 20);
-            this.labelTextura.TabIndex = 30;
-            this.labelTextura.Text = "Textura";
+            this.labelAltura.AutoSize = true;
+            this.labelAltura.Location = new System.Drawing.Point(24, 437);
+            this.labelAltura.Name = "labelAltura";
+            this.labelAltura.Size = new System.Drawing.Size(88, 20);
+            this.labelAltura.TabIndex = 30;
+            this.labelAltura.Text = "Volumen";
             // 
-            // textTecnica
+            // txtTipo
             // 
-            this.textTecnica.Location = new System.Drawing.Point(105, 384);
-            this.textTecnica.Name = "textTecnica";
-            this.textTecnica.Size = new System.Drawing.Size(173, 27);
-            this.textTecnica.TabIndex = 29;
-            this.textTecnica.TextChanged += new System.EventHandler(this.textTecnica_TextChanged);
+            this.txtTipo.Location = new System.Drawing.Point(105, 384);
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Size = new System.Drawing.Size(173, 27);
+            this.txtTipo.TabIndex = 29;
+            this.txtTipo.TextChanged += new System.EventHandler(this.textTecnica_TextChanged);
             // 
-            // labelTecnica
+            // labelTipo
             // 
-            this.labelTecnica.AutoSize = true;
-            this.labelTecnica.Location = new System.Drawing.Point(24, 391);
-            this.labelTecnica.Name = "labelTecnica";
-            this.labelTecnica.Size = new System.Drawing.Size(82, 20);
-            this.labelTecnica.TabIndex = 28;
-            this.labelTecnica.Text = "Tecnica";
+            this.labelTipo.AutoSize = true;
+            this.labelTipo.Location = new System.Drawing.Point(24, 391);
+            this.labelTipo.Name = "labelTipo";
+            this.labelTipo.Size = new System.Drawing.Size(49, 20);
+            this.labelTipo.TabIndex = 28;
+            this.labelTipo.Text = "Tipo";
             // 
-            // FechaIngreso
+            // dateFecha
             // 
-            this.FechaIngreso.Location = new System.Drawing.Point(169, 331);
-            this.FechaIngreso.Name = "FechaIngreso";
-            this.FechaIngreso.Size = new System.Drawing.Size(257, 27);
-            this.FechaIngreso.TabIndex = 27;
+            this.dateFecha.Location = new System.Drawing.Point(169, 331);
+            this.dateFecha.Name = "dateFecha";
+            this.dateFecha.Size = new System.Drawing.Size(257, 27);
+            this.dateFecha.TabIndex = 27;
             // 
             // labelFechaIngreso
             // 
@@ -98,14 +102,14 @@
             this.labelFechaIngreso.TabIndex = 26;
             this.labelFechaIngreso.Text = "Fecha Ingerso";
             // 
-            // comboBox1
+            // comboEstado
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(105, 271);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(173, 28);
-            this.comboBox1.TabIndex = 25;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboEstado.FormattingEnabled = true;
+            this.comboEstado.Location = new System.Drawing.Point(105, 271);
+            this.comboEstado.Name = "comboEstado";
+            this.comboEstado.Size = new System.Drawing.Size(173, 28);
+            this.comboEstado.TabIndex = 25;
+            this.comboEstado.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // labelEstado
             // 
@@ -167,13 +171,13 @@
             this.labelTitulo.TabIndex = 18;
             this.labelTitulo.Text = "Titulo";
             // 
-            // txtIdEscultura
+            // txtId
             // 
-            this.txtIdEscultura.Location = new System.Drawing.Point(73, 39);
-            this.txtIdEscultura.Name = "txtIdEscultura";
-            this.txtIdEscultura.Size = new System.Drawing.Size(100, 27);
-            this.txtIdEscultura.TabIndex = 17;
-            this.txtIdEscultura.TextChanged += new System.EventHandler(this.txtIdEscultura_TextChanged);
+            this.txtId.Location = new System.Drawing.Point(73, 39);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 27);
+            this.txtId.TabIndex = 17;
+            this.txtId.TextChanged += new System.EventHandler(this.txtIdEscultura_TextChanged);
             // 
             // labelId
             // 
@@ -197,6 +201,38 @@
             this.btnAñadir.UseVisualStyleBackColor = true;
             this.btnAñadir.Click += new System.EventHandler(this.btnAñadir_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(105, 523);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(173, 27);
+            this.textBox1.TabIndex = 33;
+            // 
+            // txtMaterial
+            // 
+            this.txtMaterial.Location = new System.Drawing.Point(105, 474);
+            this.txtMaterial.Name = "txtMaterial";
+            this.txtMaterial.Size = new System.Drawing.Size(173, 27);
+            this.txtMaterial.TabIndex = 34;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(24, 526);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Altura";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(23, 477);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 20);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "Material";
+            // 
             // FormAñadirEscultura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 20F);
@@ -205,14 +241,18 @@
             this.BackgroundImage = global::GaleriadeArte.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1200, 562);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtMaterial);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnAñadir);
-            this.Controls.Add(this.txtTextura);
-            this.Controls.Add(this.labelTextura);
-            this.Controls.Add(this.textTecnica);
-            this.Controls.Add(this.labelTecnica);
-            this.Controls.Add(this.FechaIngreso);
+            this.Controls.Add(this.txtVolumen);
+            this.Controls.Add(this.labelAltura);
+            this.Controls.Add(this.txtTipo);
+            this.Controls.Add(this.labelTipo);
+            this.Controls.Add(this.dateFecha);
             this.Controls.Add(this.labelFechaIngreso);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboEstado);
             this.Controls.Add(this.labelEstado);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.labelPrecio);
@@ -220,7 +260,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtTitulo);
             this.Controls.Add(this.labelTitulo);
-            this.Controls.Add(this.txtIdEscultura);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.labelId);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("MS UI Gothic", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -236,13 +276,13 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtTextura;
-        private System.Windows.Forms.Label labelTextura;
-        private System.Windows.Forms.TextBox textTecnica;
-        private System.Windows.Forms.Label labelTecnica;
-        private System.Windows.Forms.DateTimePicker FechaIngreso;
+        private System.Windows.Forms.TextBox txtVolumen;
+        private System.Windows.Forms.Label labelAltura;
+        private System.Windows.Forms.TextBox txtTipo;
+        private System.Windows.Forms.Label labelTipo;
+        private System.Windows.Forms.DateTimePicker dateFecha;
         private System.Windows.Forms.Label labelFechaIngreso;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboEstado;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label labelPrecio;
@@ -250,8 +290,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTitulo;
         private System.Windows.Forms.Label labelTitulo;
-        private System.Windows.Forms.TextBox txtIdEscultura;
+        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Button btnAñadir;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMaterial;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

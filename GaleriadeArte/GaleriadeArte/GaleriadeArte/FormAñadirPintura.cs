@@ -81,18 +81,7 @@ namespace GaleriadeArte
             }
         }
 
-        private async void btnTestConexion_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string status = await api.HealthCheckAsync();
-                MessageBox.Show("✅ Conexión exitosa: " + status);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("❌ No se pudo conectar al backend: " + ex.Message);
-            }
-        }
+        
 
         private void btnAñadir_MouseEnter(object sender, EventArgs e)
         {

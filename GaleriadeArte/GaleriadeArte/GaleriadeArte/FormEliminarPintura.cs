@@ -134,27 +134,30 @@ namespace GaleriadeArte
         {
             try
             {
-                string autor = txtAutor.Text;
-
-                if (string.IsNullOrWhiteSpace(autor))
+                // Validar que haya un ID
+                if (string.IsNullOrWhiteSpace(txtIdPintura.Text))
                 {
-                    MessageBox.Show("Ingresa un autor para buscar.");
+                    MessageBox.Show("Ingresa un ID para buscar.");
                     return;
                 }
 
-                // Buscar pinturas del autor
-                List<Pintura> resultados = await api.BuscarPinturasAsync(autor);
-
-                if (resultados == null || resultados.Count == 0)
+                // Convertir el texto a entero
+                if (!int.TryParse(txtIdPintura.Text, out int id))
                 {
-                    MessageBox.Show("No se encontraron pinturas.");
+                    MessageBox.Show("El ID debe ser un número válido.");
                     return;
                 }
 
-                // Tomamos la primera pintura encontrada
-                Pintura pintura = resultados[0];
+                // Buscar pintura por ID (asegúrate que este método exista en ApiService)
+                Pintura pintura = await api.BuscarPinturaPorIdAsync(id);
 
-                // Rellenamos los campos de la GUI
+                if (pintura == null)
+                {
+                    MessageBox.Show("No se encontró ninguna pintura con ese ID.");
+                    return;
+                }
+
+                // Rellenar los campos de la GUI
                 txtIdPintura.Text = pintura.Id.ToString();
                 txtTitulo.Text = pintura.Titulo;
                 txtAutor.Text = pintura.Autor;
@@ -166,7 +169,7 @@ namespace GaleriadeArte
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al buscar pinturas: " + ex.Message);
+                MessageBox.Show("Error al buscar pintura: " + ex.Message);
             }
         }
         private void btnEliminar_MouseEnter(object sender, EventArgs e)

@@ -15,6 +15,6 @@ public class Escultura extends ObraArte {
     private double altura;
     private double volumen;
     private String material;
-    private String tipoEscultura;
+    
 
 }

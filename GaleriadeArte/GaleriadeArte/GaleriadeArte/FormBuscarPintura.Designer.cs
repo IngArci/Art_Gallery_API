@@ -46,6 +46,7 @@
             this.txtIdPintura = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtTextura
@@ -190,6 +191,19 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // btnActualizar
+            // 
+            this.btnActualizar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnActualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnActualizar.Font = new System.Drawing.Font("MS UI Gothic", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizar.Location = new System.Drawing.Point(776, 382);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(131, 37);
+            this.btnActualizar.TabIndex = 61;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
+            // 
             // FormBuscarPintura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 20F);
@@ -198,6 +212,7 @@
             this.BackgroundImage = global::GaleriadeArte.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1200, 562);
+            this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtTextura);
             this.Controls.Add(this.labelTextura);
@@ -246,5 +261,6 @@
         private System.Windows.Forms.TextBox txtIdPintura;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnActualizar;
     }
 }

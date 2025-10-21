@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEliminar_Escultura));
-            this.txtTextura = new System.Windows.Forms.TextBox();
-            this.labelTextura = new System.Windows.Forms.Label();
-            this.textTecnica = new System.Windows.Forms.TextBox();
-            this.labelTecnica = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.labelFechaIngreso = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -46,39 +42,15 @@
             this.txtIdEscultura = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtMaterial = new System.Windows.Forms.TextBox();
+            this.txtAltura = new System.Windows.Forms.TextBox();
+            this.txtVolumen = new System.Windows.Forms.TextBox();
+            this.labelAltura = new System.Windows.Forms.Label();
+            this.txtTipo = new System.Windows.Forms.TextBox();
+            this.labelTipo = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // txtTextura
-            // 
-            this.txtTextura.Location = new System.Drawing.Point(119, 424);
-            this.txtTextura.Name = "txtTextura";
-            this.txtTextura.Size = new System.Drawing.Size(173, 27);
-            this.txtTextura.TabIndex = 63;
-            // 
-            // labelTextura
-            // 
-            this.labelTextura.AutoSize = true;
-            this.labelTextura.Location = new System.Drawing.Point(38, 431);
-            this.labelTextura.Name = "labelTextura";
-            this.labelTextura.Size = new System.Drawing.Size(81, 20);
-            this.labelTextura.TabIndex = 62;
-            this.labelTextura.Text = "Textura";
-            // 
-            // textTecnica
-            // 
-            this.textTecnica.Location = new System.Drawing.Point(119, 378);
-            this.textTecnica.Name = "textTecnica";
-            this.textTecnica.Size = new System.Drawing.Size(173, 27);
-            this.textTecnica.TabIndex = 61;
-            // 
-            // labelTecnica
-            // 
-            this.labelTecnica.AutoSize = true;
-            this.labelTecnica.Location = new System.Drawing.Point(38, 385);
-            this.labelTecnica.Name = "labelTecnica";
-            this.labelTecnica.Size = new System.Drawing.Size(82, 20);
-            this.labelTecnica.TabIndex = 60;
-            this.labelTecnica.Text = "Tecnica";
             // 
             // dateTimePicker1
             // 
@@ -190,6 +162,70 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 464);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 20);
+            this.label3.TabIndex = 72;
+            this.label3.Text = "Material";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 513);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.TabIndex = 71;
+            this.label2.Text = "Altura";
+            // 
+            // txtMaterial
+            // 
+            this.txtMaterial.Location = new System.Drawing.Point(119, 461);
+            this.txtMaterial.Name = "txtMaterial";
+            this.txtMaterial.Size = new System.Drawing.Size(173, 27);
+            this.txtMaterial.TabIndex = 70;
+            // 
+            // txtAltura
+            // 
+            this.txtAltura.Location = new System.Drawing.Point(119, 510);
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(173, 27);
+            this.txtAltura.TabIndex = 69;
+            // 
+            // txtVolumen
+            // 
+            this.txtVolumen.Location = new System.Drawing.Point(119, 417);
+            this.txtVolumen.Name = "txtVolumen";
+            this.txtVolumen.Size = new System.Drawing.Size(173, 27);
+            this.txtVolumen.TabIndex = 68;
+            // 
+            // labelAltura
+            // 
+            this.labelAltura.AutoSize = true;
+            this.labelAltura.Location = new System.Drawing.Point(25, 424);
+            this.labelAltura.Name = "labelAltura";
+            this.labelAltura.Size = new System.Drawing.Size(88, 20);
+            this.labelAltura.TabIndex = 67;
+            this.labelAltura.Text = "Volumen";
+            // 
+            // txtTipo
+            // 
+            this.txtTipo.Location = new System.Drawing.Point(119, 371);
+            this.txtTipo.Name = "txtTipo";
+            this.txtTipo.Size = new System.Drawing.Size(173, 27);
+            this.txtTipo.TabIndex = 66;
+            // 
+            // labelTipo
+            // 
+            this.labelTipo.AutoSize = true;
+            this.labelTipo.Location = new System.Drawing.Point(38, 378);
+            this.labelTipo.Name = "labelTipo";
+            this.labelTipo.Size = new System.Drawing.Size(49, 20);
+            this.labelTipo.TabIndex = 65;
+            this.labelTipo.Text = "Tipo";
+            // 
             // FormEliminar_Escultura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 20F);
@@ -198,11 +234,15 @@
             this.BackgroundImage = global::GaleriadeArte.Properties.Resources.background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1200, 562);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtMaterial);
+            this.Controls.Add(this.txtAltura);
+            this.Controls.Add(this.txtVolumen);
+            this.Controls.Add(this.labelAltura);
+            this.Controls.Add(this.txtTipo);
+            this.Controls.Add(this.labelTipo);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.txtTextura);
-            this.Controls.Add(this.labelTextura);
-            this.Controls.Add(this.textTecnica);
-            this.Controls.Add(this.labelTecnica);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.labelFechaIngreso);
             this.Controls.Add(this.comboBox1);
@@ -229,11 +269,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtTextura;
-        private System.Windows.Forms.Label labelTextura;
-        private System.Windows.Forms.TextBox textTecnica;
-        private System.Windows.Forms.Label labelTecnica;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label labelFechaIngreso;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -247,5 +282,13 @@
         private System.Windows.Forms.TextBox txtIdEscultura;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtMaterial;
+        private System.Windows.Forms.TextBox txtAltura;
+        private System.Windows.Forms.TextBox txtVolumen;
+        private System.Windows.Forms.Label labelAltura;
+        private System.Windows.Forms.TextBox txtTipo;
+        private System.Windows.Forms.Label labelTipo;
     }
 }

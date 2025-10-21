@@ -26,27 +26,30 @@ namespace GaleriadeArte
         {
             try
             {
-                string autor = txtAutor.Text;
-
-                if (string.IsNullOrWhiteSpace(autor))
+                // Validar que haya un ID
+                if (string.IsNullOrWhiteSpace(txtIdPintura.Text))
                 {
-                    MessageBox.Show("Ingresa un autor para buscar.");
+                    MessageBox.Show("Ingresa un ID para buscar.");
                     return;
                 }
 
-                // Buscar pinturas del autor
-                List<Pintura> resultados = await api.BuscarPinturasAsync(autor);
-
-                if (resultados == null || resultados.Count == 0)
+                // Convertir el texto a entero
+                if (!int.TryParse(txtIdPintura.Text, out int id))
                 {
-                    MessageBox.Show("No se encontraron pinturas.");
+                    MessageBox.Show("El ID debe ser un número válido.");
                     return;
                 }
 
-                // Tomamos la primera pintura encontrada
-                Pintura pintura = resultados[0];
+                // Buscar pintura por ID (asegúrate que este método exista en ApiService)
+                Pintura pintura = await api.BuscarPinturaPorIdAsync(id);
 
-                // Rellenamos los campos de la GUI
+                if (pintura == null)
+                {
+                    MessageBox.Show("No se encontró ninguna pintura con ese ID.");
+                    return;
+                }
+
+                // Rellenar los campos de la GUI
                 txtIdPintura.Text = pintura.Id.ToString();
                 txtTitulo.Text = pintura.Titulo;
                 txtAutor.Text = pintura.Autor;
@@ -58,7 +61,58 @@ namespace GaleriadeArte
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al buscar pinturas: " + ex.Message);
+                MessageBox.Show("Error al buscar pintura: " + ex.Message);
+            }
+        }
+
+        private async void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validar ID
+                if (string.IsNullOrWhiteSpace(txtIdPintura.Text))
+                {
+                    MessageBox.Show("Primero busca una pintura para actualizar.");
+                    return;
+                }
+
+                if (!int.TryParse(txtIdPintura.Text, out int id))
+                {
+                    MessageBox.Show("El ID debe ser un número válido.");
+                    return;
+                }
+
+                // Crear el objeto con los valores actuales del formulario
+                Pintura cambios = new Pintura
+                {
+                    Id = id,
+                    Titulo = txtTitulo.Text,
+                    Autor = txtAutor.Text,
+                    Precio = double.TryParse(txtPrecio.Text, out double precio) ? precio : 0,
+                    Estado = comboBox1.Text,
+                    FechaIngreso = dateTimePicker1.Value,
+                    Tecnica = textTecnica.Text,
+                    Textura = txtTextura.Text
+                };
+
+                // Llamar al API para actualizar
+                Pintura actualizada = await api.ActualizarPinturaAsync(id, cambios);
+
+                // Confirmar resultado
+                MessageBox.Show($"Pintura '{actualizada.Titulo}' actualizada correctamente.");
+
+                // Refrescar los campos con la pintura actualizada
+                txtTitulo.Text = actualizada.Titulo;
+                txtAutor.Text = actualizada.Autor;
+                txtPrecio.Text = actualizada.Precio.ToString();
+                comboBox1.Text = actualizada.Estado;
+                dateTimePicker1.Value = actualizada.FechaIngreso;
+                textTecnica.Text = actualizada.Tecnica;
+                txtTextura.Text = actualizada.Textura;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar pintura: " + ex.Message);
             }
         }
 
